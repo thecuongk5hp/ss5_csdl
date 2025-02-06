@@ -38,16 +38,28 @@ VALUES
 (2, '2025-01-16', 850000, NULL);
 
 -- 2  Viết câu lệnh truy vấn để lấy toàn bộ dữ liệu từ bảng orders và bảng customers, bao gồm cả những đơn hàng không có khách hàng liên kết, sao cho kết quả trả về có dạng như bảng sau:
-select o.order_id, o.order_date, o.total_amount, c.name, c.email
-from orders o
-Join  customers c ON o.customer_id = c.customer_id;
+SELECT 
+    orders.order_id, 
+    orders.order_date, 
+    orders.total_amount, 
+    customers.name, 
+    customers.email
+FROM orders
+LEFT JOIN customers ON orders.customer_id = customers.customer_id;
+
 
 -- 3  Viết câu lệnh truy vấn để lấy thông tin khách hàng (customer_id, name, phone) từ bảng customers và thông tin đơn hàng (order_id, status) từ bảng orders, bao gồm cả những khách hàng không có đơn hàng, sao cho kết quả trả về có dạng như bảng sau:
 select c.customer_id , c.name , c.phone , o.order_id , o.status
 from customers c
-left join orders o ON c.customer_id = o.customer_id;
+left join orders o 
+ON c.customer_id = o.customer_id;
 
 -- 4  Viết câu lệnh truy vấn để lấy thông tin khách hàng (customer_id, name) và thông tin đơn hàng (order_id, total_amount, order_date), chỉ hiển thị những đơn hàng có liên kết với khách hàng, sao cho kết quả trả về có dạng như bảng sau:
-select c.customer_id , c.name,o.order_id,o.total_amount,o.oder_date
-from customers c
-join orders o ON c.customer_id = o.customer_id;
+SELECT 
+    customers.customer_id, 
+    customers.name, 
+    orders.order_id, 
+    orders.total_amount, 
+    orders.order_date
+FROM customers
+INNER JOIN orders ON customers.customer_id = orders.customer_id;
