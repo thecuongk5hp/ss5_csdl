@@ -49,10 +49,10 @@ on o.customer_id = c.customer_id
 where o.status = 'pending' and total_amount > 300000;
 
 -- 3
-select name, email, order_id
-from orders o
-join customers c on o.customer_id = c.customer_id
-where o.status = ' Đã hoàn thành ' or o.status is NULL;
+SELECT c.name, c.email, o.order_id
+FROM orders o
+JOIN customers c ON o.customer_id = c.customer_id
+WHERE o.status = 'Completed' OR o.status IS NULL;
 
 -- 4
 select name, address, order_id, status
